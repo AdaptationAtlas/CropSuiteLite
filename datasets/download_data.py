@@ -40,7 +40,6 @@ class ProcessTools():
         - pr: converted to daily precipitation (kg m-2 s-1 → mm/day)
         - tasmax, tasmin: convert from Kelvin → Celsius
         - rsds: convert radiation (W/m2 → MJ/m2/day)
-        - There are no unit conversition for hurs and sfcWind
         """
         
         if variable is None:
