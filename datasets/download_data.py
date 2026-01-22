@@ -40,6 +40,7 @@ class ProcessTools():
         - pr: converted to daily precipitation (kg m-2 s-1 → mm/day)
         - tasmax, tasmin: convert from Kelvin → Celsius
         - rsds: convert radiation (W/m2 → MJ/m2/day)
+        - There are no unit conversition for hurs and sfcWind
         """
         
         if variable is None:
@@ -51,7 +52,8 @@ class ProcessTools():
             return xrdata.load() - 273.15
         if variable == 'rsds':
             return xrdata.load() * 86400 / 1000000
-        
+        if variable == 'sfcWind' or variable == 'hurs':
+            return xrdata.load()
     
     @staticmethod    
     def clip_spdata(
@@ -203,7 +205,7 @@ class DownloadCMIP6Data():
             Path to downloaded file or None if failed.
         """
         
-        if not output_path.exists(): output_path.mkdir(parents = True)
+        output_path.mkdir(parents = True, exist_ok = True)
         output_fn = output_path / fn
         
         if output_fn.exists() and output_fn.stat().st_size > 1e5:
