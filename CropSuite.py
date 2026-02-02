@@ -168,7 +168,7 @@ class CropSuiteLite():
         else:
             
             # xarray test
-            doit_withxarray = True
+            doit_withxarray = self.climate_config['options'].get('xarray_process', False)
             if doit_withxarray:
                 climate_suitability_xarray(self.climate_config, extent, temp_files, prec_files, self.plant_params, self._temp_path, self.area_name, day_interval = self.day_interval)
                 
